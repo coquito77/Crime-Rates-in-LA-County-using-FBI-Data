@@ -9,63 +9,6 @@ output:
 
 ---
 
----
-references:
-
-
-- id: FBITable8
-  title: Table 8
-  author:
-  - family: 
-    given: 
-  container-title: Uniform Crime Reporting (UCR) Program
-  URL: 'https://www.fbi.gov/about-us/cjis/ucr/ucr'
-  publisher: Federal Bureau of Investigation
-  type: article-journal
-  issued:
-    year: 2009
-        
-- id: PPICRealigmentTrends
-  title: Realignment, Incarceration, and Crime Trends in California
-  author:
-  - family: Lofstrom, Magnus, and Raphael, Steven 
-    given:   
-  container-title: Realignment, Incarceration, and Crime Trends in California
-  URL: 'http://www.ppic.org/main/publication_quick.asp?i=1151'
-
-  publisher: Public Policy Institute of California
-  type: article-journal
-  issued:
-    year: 2015
-    month: 5
-    
-- id: AB109
-  title: Assembly Bill No. 109
-  author:
-  - family: 
-    given: 
-  container-title: Assembly Bill No. 109
-  URL: 'http://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=201120120AB109'
-  publisher: California Secretary of State
-  type: article-journal
-  issued:
-    year: 2011
-    month: 4
-    
-- id: CaJailProfileSurvey
-  title: Jail Profile Survey
-  author:
-  - family: 
-    given: 
-  container-title: Jail Profile Survey
-  URL: 'http://www.bscc.ca.gov/s_fsojailprofilesurvey.php'
-  publisher: Board of State and Community Corrections
-  type: article-journal
-  issued:
-    year: 2015
-    month: 7
-...
-
 This analysis compares the property and violent crime rate changes in Los Angeles County by city utilizing data from the Federal Bureau of Investigation's (FBI) Uniform Crime Report (UCR). These data can be found in Table 8 @FBITable8 (2013) [here.](http://www.fbi.gov/about-us/cjis/ucr/ucr)  
 
 In addition, inspiration for this report came from the 'Realignment, Incarceration, and Crime Trends in California
@@ -1385,21 +1328,7 @@ endTime <- Sys.time()
 
 ```
 
-
-
-
 \clearpage
-
-
-
-@CaJailProfileSurvey [p. 33] says blah test last one.
-@AB109 [p. 33] says blah test.
-
-@PPICRealigmentTrends [p. 33] says blah.
-
-
-@FBITable8 [p. 33] says blah.
-
 
 
 The analysis was completed on `r format(Sys.time(), "%a %b %d %X %Y")
@@ -1408,6 +1337,61 @@ The analysis was completed on `r format(Sys.time(), "%a %b %d %X %Y")
 
 # References
 
+---
+references:
 
+
+- id: FBITable8
+  title: Table 8
+  author:
+  - family: 
+    given: 
+  container-title: Uniform Crime Reporting (UCR) Program
+  URL: 'https://www.fbi.gov/about-us/cjis/ucr/ucr'
+  publisher: Federal Bureau of Investigation
+  type: article-journal
+  issued:
+    year: 2009
+        
+- id: PPICRealigmentTrends
+  title: Realignment, Incarceration, and Crime Trends in California
+  author:
+  - family: Lofstrom, Magnus, and Raphael, Steven 
+    given:   
+  container-title: Realignment, Incarceration, and Crime Trends in California
+  URL: 'http://www.ppic.org/main/publication_quick.asp?i=1151'
+
+  publisher: Public Policy Institute of California
+  type: article-journal
+  issued:
+    year: 2015
+    month: 5
+    
+- id: AB109
+  title: Assembly Bill No. 109
+  author:
+  - family: 
+    given: 
+  container-title: Assembly Bill No. 109
+  URL: 'http://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=201120120AB109'
+  publisher: California Secretary of State
+  type: article-journal
+  issued:
+    year: 2011
+    month: 4
+    
+- id: CaJailProfileSurvey
+  title: Jail Profile Survey
+  author:
+  - family: 
+    given: 
+  container-title: Jail Profile Survey
+  URL: 'http://www.bscc.ca.gov/s_fsojailprofilesurvey.php'
+  publisher: Board of State and Community Corrections
+  type: article-journal
+  issued:
+    year: 2015
+    month: 7
+...
 
 
