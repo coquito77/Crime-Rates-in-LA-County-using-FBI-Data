@@ -844,7 +844,7 @@ dev.off()
 
 # Analysis of the Los Angeles County Jail Profile
 
-For this analysis data from The Board of State and Community Corrections. Jail Survey Data @CaJailProfileSurvey available is between January 2001 and September 2014. These data can be accessed [here](http://www.bscc.ca.gov/s_fsojailprofilesurvey.php). It is important to note that Prop 47 passed in November 2014, and any effects it had in jail population counts can't be analyzed at this time.     
+For this analysis data from The Board of State and Community Corrections. Jail Survey Data @CaJailProfileSurvey available is between January 2002 and September 2014. These data can be accessed [here](http://www.bscc.ca.gov/s_fsojailprofilesurvey.php). It is important to note that Prop 47 passed in November 2014, and any effects it had in jail population counts can't be analyzed at this time.     
 
 The Jail survey data has following variables : (1) Jurisdiction, (2) Year, (3) Month, (4) (ADP totals) Unsentenced males, (5) (ADP totals) Unsentenced females, (6) (ADP totals) Sentenced males, (7) (ADP totals) Sentenced females, (8) (ADP totals) Jurisdiction, (9) (Avg number of felony inmates) Unsentenced, (10) (Avg number of felony inmates) Sentenced, (11) (Avg number of felony inmates) Total, (12) (Avg number of misdemeanor inmates) Unsentenced, (13) (Avg number of misdemeanor inmates) Sentenced, (14) (Avg number of misdemeanor inmates) Total, (15) Highest one-day population for this month occurred on:, (16) The highest count was:, (17) ADP of maximum security inmates, (18) ADP of medium security inmates, (19) ADP of minimum security inmates, (20) Mental health cases opened last day of the month, (21) New mental health cases opened during this month, (22) Inmates, last day of the month, receiving psych medication, (23) Inmates assigned to mental health beds last day of month, (24) Inmates that were seen at inmate sick call this month, (25) Physician/practitioner occurrences during this month, (26) Off-site medical appointments during this month, (27) Dental encounters during this month, (28) Inmates assigned to medical beds last day of the month, (29) Avg # of inmates not assigned to housing, (30) Avg # of your inmates in contract beds in other jurisdictions, (31) Avg # of federal inmates housed in your system on contract, (32) Avg # of state inmates housed in your system on contract, (33) Avg # of inmates from other Co. in your system on contract, (34) Avg # of inmates sent. and awaiting transport to state prison, (35) Avg # of inmates in hospital(s) outside of your jail facilities, (36) Total # of persons booked this month, (37) Total # of pretrial released due to lack of housing capacity, (38) Total # of sent. released due to lack of housing capacity, and (39) Total # of juveniles in custody this month (per 707 W&I code).    
 
@@ -916,6 +916,8 @@ highMonthCount <- subset(jailMonthPopLACounty, select = c(TheHighestCountWas))
 tsHighMonthCount <- ts(as.vector(highMonthCount), 
                        start=c(2002,1), end=c(2014,9), frequency = 12)
 
+# complete structural change analysis on this variable
+
 breakTrendData <- tsHighMonthCount
 
 plot(breakTrendData)
@@ -971,6 +973,8 @@ AdpOfMaximumSecurityInmates <- subset(jailMonthPopLACounty, select = c(AdpOfMaxi
 tsAdpOfMaximumSecurityInmates <- ts(as.vector(AdpOfMaximumSecurityInmates), 
                                     start=c(2002,1), end=c(2014,9), frequency = 12)
 
+# complete structural change analysis on this variable
+
 breakTrendData <- tsAdpOfMaximumSecurityInmates
 
 plot(breakTrendData)
@@ -1022,6 +1026,8 @@ InmatesLastDayOfTheMonthReceivingPsychMedication <- subset(jailMonthPopLACounty,
 # make the count a time series object
 breakTrendData <- ts(as.vector(InmatesLastDayOfTheMonthReceivingPsychMedication), 
                      start=c(2002,1), end=c(2014,9), frequency = 12)
+
+# complete structural change analysis on this variable
 
 plot(breakTrendData)
 bpData <- breakpoints(breakTrendData ~ 1)
@@ -1080,6 +1086,8 @@ InmatesAssignedToMentalHealthBedsLastDayOfMonth <- subset(jailMonthPopLACounty,
 breakTrendData <- ts(as.vector(InmatesAssignedToMentalHealthBedsLastDayOfMonth), 
                      start=c(2002,1), end=c(2014,9), frequency = 12)
 
+# complete structural change analysis on this variable
+
 plot(breakTrendData)
 bpData <- breakpoints(breakTrendData ~ 1)
 summary(bpData)
@@ -1136,6 +1144,8 @@ TotalOfPersonsBookedThisMonth <- subset(jailMonthPopLACounty,
 breakTrendData <- ts(as.vector(TotalOfPersonsBookedThisMonth), 
                      start=c(2002,1), end=c(2014,9), frequency = 12)
 
+# complete structural change analysis on this variable
+
 plot(breakTrendData)
 bpData <- breakpoints(breakTrendData ~ 1)
 summary(bpData)
@@ -1191,6 +1201,8 @@ TotalOfSentReleasedDueToLackOfHousingCapacity <- subset(jailMonthPopLACounty,
 breakTrendData <- ts(as.vector(TotalOfSentReleasedDueToLackOfHousingCapacity), 
                      start=c(2002,1), end=c(2014,9), frequency = 12)
 
+# complete structural change analysis on this variable
+
 plot(breakTrendData)
 bpData <- breakpoints(breakTrendData ~ 1)
 summary(bpData)
@@ -1230,7 +1242,7 @@ for (c in 1:nrow(TotalOfSentReleasedDueToLackOfHousingCapacityMonth)) {
   TotalOfSentReleasedDueToLackOfHousingCapacityMonth[c, "CummSum"] <- startCount}
 
 
-# add a variable to identify each
+# add a variable to identify each variables' structural change
 
 highMonthCountMonth$Type <- "Highest count"
 AdpOfMaximumSecurityInmatesMonth$Type <- "ADP (average daily population) maximum  mecurity inmates"
@@ -1253,18 +1265,16 @@ comboJailProfSets <- rbind(highMonthCountMonth, AdpOfMaximumSecurityInmatesMonth
                            InmatesAssignedToMentalHealthBedsLastDayOfMoMonth, 
                            TotalOfPersonsBookedThisMoMonth, 
                            TotalOfSentReleasedDueToLackOfHousingCapacityMonth)
+
 # get a copy of the set for the piecewise regression
 
-
 comboJailProfSetsPiecewise <- comboJailProfSets
-
-
 
 
 ```
 
 
-```{rplot13, fig.width= 10, fig.height = 15, echo=FALSE, fig.cap= "Selected Jail Survey variables for Los Angeles County from January 2001 to December 2014", warning=FALSE}
+```{rplot13, fig.width= 10, fig.height = 15, echo=FALSE, fig.cap= "Selected Jail Survey variables for Los Angeles County from January 2002 to December 2014", warning=FALSE}
 
 # order levels
 comboJailProfSets$Type <- factor(comboJailProfSets$Type, 
