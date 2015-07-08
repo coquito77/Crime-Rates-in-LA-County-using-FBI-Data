@@ -449,7 +449,7 @@ write.table(comboRecs, file = "./ct.km.txt",  sep="\t", row.names = FALSE)
 ``` {r echo=FALSE, include=FALSE}
 # Import the file of city names
 
-citiesInLACounty <- read.dbf("F:/maps/scagCityBoundaries/city_boundary_scag_2010LACountyOnly.dbf", as.is = FALSE)
+citiesInLACounty <- read.dbf("I:/maps/scagCityBoundaries/city_boundary_scag_2010LACountyOnly.dbf", as.is = FALSE)
 
 str(citiesInLACounty)
 
@@ -889,7 +889,7 @@ jailMonthPopLACounty <- sqlFetch(channel, "data") # name of Excel spreadsheet
 odbcClose(channel)
 str(jailMonthPopLACounty)
 
-dateStartAb109 <- as.Date("2010-10-01")
+dateStartAb109 <- as.Date("2011-10-01")
 
 # remove name puctuation and format names
 
@@ -1319,10 +1319,10 @@ ggplot(data = comboJailProfSets, aes(x = YearMonth, y = count ))  +
                      labels = comma) +
   geom_vline(xintercept = as.numeric(dateStartAb109), linetype=4, size = 1, 
              color="blue") +
-  # annotate("text", label = "Start of AB109", 
+  # annotate("text", label = "Start of AB 109", 
   #            x = dateStartAb109, y = 20, 
   #            hjust=0, vjust=1.50, angle = 90, size = 4, colour = "blue") +
-  geom_text(data = ann_text,label = "Start of AB109",hjust=0, vjust=1.50, angle = 90, size = 4, colour = "blue") +
+  geom_text(data = ann_text,label = "AB 109 starts",hjust=0, vjust=1.50, angle = 90, size = 4, colour = "blue") +
   theme(axis.title.x = element_text(size = 16, angle = 00)) +
   theme(axis.title.y = element_text(size = 16, angle = 90)) +
   theme(axis.text.x = element_text(colour = "black", 
