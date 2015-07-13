@@ -664,9 +664,10 @@ For example, if a city with 50,000 residents that has 10 robberies in a given ye
 Table 1 below shows cities in Los Angeles County with extreme changes in population.    
 
 
-```{r results ='asis', message = FALSE, warning = FALSE, echo = FALSE}
-
-print(xtable(prettyNum(comboBottomAndTop,big.mark=","),
+```{r test, results ='asis', message = FALSE, warning = FALSE, echo = FALSE}
+xt <- capture.output(print(xtable(prettyNum(comboBottomAndTop,
+                       big.mark=",",
+                       preserve.width="none"),
              digits=0, 
              caption = "Top and bottom ten cities of day population change in 
              Los Angeles County. Data from U.S Census Commuter Adjusted Daytime Population: 2006-2010 5-year ACS",  
@@ -676,7 +677,10 @@ print(xtable(prettyNum(comboBottomAndTop,big.mark=","),
       caption.placement = "bottom", 
       include.rownames=FALSE, 
       # table.placement="t", 
-      comment=FALSE)
+      comment=FALSE))
+
+xt_mod <- gsub("(\\s|^)(-\\S*)", "\\1\\\\textcolor{red}{\\2}", xt)
+cat(xt_mod, sep="\n")
 
 ```
 
